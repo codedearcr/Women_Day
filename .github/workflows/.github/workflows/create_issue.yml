@@ -1,0 +1,23 @@
+name: Create GitHub Issue from Feedback
+
+on:
+  repository_dispatch:
+    types: [create-feedback]
+
+jobs:
+  create_issue:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Create Issue
+        uses: actions/github-script@v6
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const feedback = context.payload.client_payload.feedback;
+            github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title: "📩 Phản hồi từ khách truy cập",
+              body: feedback,
+              labels: ["feedback"]
+            });
