@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<meta name="description" content="Bu sayt qanınlar günününə özəl yazılıbdır" />
+	<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+	<meta property="og:title" content="Qadınlar Günü" />
+	<meta property="og:description" content="by Guliyev Zamir" />
+
+	<meta property=og:image content="img/womens-day-img.jpg">
+	<meta property="og:image:width" content="499" />
+	<meta property="og:image:height" content="556" />
+	<link rel="stylesheet" href="style.css" />
+	<link rel="stylesheet" href="fonts/stylesheet.css" />
+	<link rel="icon" href="img/favicons/favicon.ico" />
+	<style>
+        #redirectButton {
+            display: none; /* Ẩn nút ban đầu */
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            padding: 10px 20px;
+            background-color: #ff69b4;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        #redirectButton:hover {
+            background-color: #d14791;
+        }
+    </style>
+	<title>Chúc mừng ngày phụ nữ</title>
+</head>
+
+<body>
+	<div class="preloader" style="text-align: center; font-size: 24px;">Xin chào, Hương muốn tớ gọi Hương là gì nào. Giới hạn 12 kí tự thôi nhée😊</div>
+	<div id="petals"></div>
+	<div class="wrap">
+		<div class="ovarlay"></div>
+		<div class="card">
+			<div class="title" id="title">
+				Gửi <span class="enteredName"></span>
+			</div>
+			<div class="text" id="text"></div>
+			<div class="author" id="author">
+				<br />
+				<b style="z-index: 999; ">by Hút lỏ</b>
+			</div>
+		</div>
+		<div class="bouquet-img">
+			<img src="img/bouquet.png" alt="" />
+		</div>
+	</div>
+	<audio autoplay loop>
+        <source src="audio_thousandyears.mp3" type="audio/mp3">
+        Trình duyệt của bạn không hỗ trợ audio.
+    </audio>
+	<button id="redirectButton" onclick="window.location.href='wd.html'">Skip</button>
+	<script src="js/jquery-3.6.0.min.js"></script>
+	<script src="js/TweenMax.min.js"></script>
+	<script src="js/typed.min.js"></script>
+	<script src="js/app.js"></script>
+	<script>
+        setTimeout(function() {
+            document.getElementById('redirectButton').style.display = 'block';
+        }, 50000); // 50 giây
+    </script>
+</body>
+
+</html>

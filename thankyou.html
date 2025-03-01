@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cảm ơn & Góp ý</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 flex items-center justify-center min-h-screen">
+
+    <div class="bg-white shadow-lg rounded-xl p-6 max-w-lg text-center">
+        <h2 class="text-2xl font-semibold text-gray-800">🎉 Cảm ơn Hương đã xem tới đây!</h2>
+        <p class="text-gray-600 mt-2">Hãy để lại ý kiến của Hương để giúp tớ cải thiện hơn.</p>
+
+        <textarea id="feedback" rows="4" class="w-full p-3 mt-4 border rounded-lg focus:ring focus:ring-blue-300"
+            placeholder="Nhập ý kiến của Hương..."></textarea>
+
+        <button onclick="submitFeedback()"
+            class="mt-4 bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-all">
+            Gửi phản hồi
+        </button>
+
+        <p id="status" class="mt-3 text-gray-700 font-medium"></p>
+    </div>
+
+    <script>
+        async function submitFeedback() {
+            const feedback = document.getElementById("feedback").value;
+            const statusMsg = document.getElementById("status");
+
+            if (!feedback) {
+                statusMsg.textContent = "⚠️ Vui lòng nhập ý kiến!";
+                statusMsg.classList.add("text-red-600");
+                return;
+            }
+
+            statusMsg.textContent = "⏳ Đang gửi...";
+            statusMsg.classList.remove("text-red-600");
+
+            const repoOwner = "USERNAME";  // Thay USERNAME bằng GitHub của bạn
+            const repoName = "REPO";       // Thay REPO bằng tên repository của bạn
+            const token = "YOUR_GITHUB_PAT"; // ⚠️ ĐỪNG PUBLIC TOKEN
+
+            const url = `https://api.github.com/repos/${repoOwner}/${repoName}/issues`;
+            const data = {
+                title: "📩 Phản hồi từ khách truy cập",
+                body: feedback,
+                labels: ["feedback"]
+            };
+
+            try {
+                const response = await fetch(url, {
+                    method: "POST",
+                    headers: {
+                        "Authorization": `Bearer ${token}`,
+                        "Accept": "application/vnd.github.v3+json`,
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify(data)
+                });
+
+                if (response.ok) {
+                    statusMsg.textContent = "✅ Cảm ơn! Phản hồi của bạn đã được gửi.";
+                    statusMsg.classList.add("text-green-600");
+                    document.getElementById("feedback").value = "";
+                } else {
+                    statusMsg.textContent = "❌ Lỗi! Không thể gửi phản hồi.";
+                    statusMsg.classList.add("text-red-600");
+                }
+            } catch (error) {
+                console.error("Lỗi:", error);
+                statusMsg.textContent = "⚠️ Đã xảy ra lỗi.";
+                statusMsg.classList.add("text-red-600");
+            }
+        }
+    </script>
+
+</body>
+</html>
