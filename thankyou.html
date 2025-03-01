@@ -37,9 +37,9 @@
             statusMsg.textContent = "⏳ Đang gửi...";
             statusMsg.classList.remove("text-red-600");
 
-            const repoOwner = "USERNAME";  // Thay USERNAME bằng GitHub của bạn
-            const repoName = "REPO";       // Thay REPO bằng tên repository của bạn
-            const token = "YOUR_GITHUB_PAT"; // ⚠️ ĐỪNG PUBLIC TOKEN
+            const repoOwner = "codedearcr";  // Thay USERNAME bằng GitHub của bạn
+            const repoName = "Women_Day";       // Thay REPO bằng tên repository của bạn
+            const token = ""; // ⚠️ ĐỪNG PUBLIC TOKEN
 
             const url = `https://api.github.com/repos/${repoOwner}/${repoName}/issues`;
             const data = {
